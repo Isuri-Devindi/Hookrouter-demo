@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {useRoutes} from 'hookrouter'
+import Nav from './components/Nav';
+import About from './components/About';
+import Shop from './components/Shop';
+import Home from './components/Home';
+import Details from './components/Details';
 
 function App() {
+  const routes = {
+    '/' :()=><Home/>,
+    '/about' :()=> <About/>,
+    '/shop' :()=> <Shop/>,
+    '/shop/:id':({id})=><Details id={id}/>
+  };
+  const routeResults = useRoutes(routes);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Nav/>
+        {routeResults}
     </div>
   );
 }
